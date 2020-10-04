@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import './screens/filters_screen.dart';
+import './screens/tab_screen.dart';
 import './screens/meal_detail_screen.dart';
 import './screens/category_meals_screen.dart';
 import './screens/categories_screen.dart';
@@ -27,14 +29,17 @@ class MyApp extends StatelessWidget {
               ),
             ),
       ),
-      home: Scaffold(
-       // backgroundColor: Colors.white,
-        appBar: AppBar(title: const Text('DeliMeals')),
-        body: CategoryScreen(),
-      ),
+//      home: Scaffold(
+//       // backgroundColor: Colors.white,
+//        appBar: AppBar(title: const Text('DeliMeals')),
+//        body: CategoryScreen(),
+//      ),
+      initialRoute: '/',
       routes: {
+        '/' : (ctx) => TabsScreen(),
         CategoryMealsScreen.routeName: (ctx) => CategoryMealsScreen(),
         MealScreenDetail.routeName: (ctx) => MealScreenDetail(),
+        FiltersScreen.routeName: (ctx) => FiltersScreen(),
       },
     );
   }
