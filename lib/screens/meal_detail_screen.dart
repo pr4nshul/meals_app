@@ -9,7 +9,10 @@ class MealScreenDetail extends StatelessWidget {
       margin: EdgeInsets.symmetric(vertical: 8),
       child: Text(
         text,
-        style: Theme.of(context).textTheme.headline6,
+        style: Theme
+            .of(context)
+            .textTheme
+            .headline6,
       ),
     );
   }
@@ -31,7 +34,10 @@ class MealScreenDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final mealId = ModalRoute.of(context).settings.arguments as String;
+    final mealId = ModalRoute
+        .of(context)
+        .settings
+        .arguments as String;
     final selectedMeal = DUMMY_MEALS.firstWhere((meal) => meal.id == mealId);
     return Scaffold(
       appBar: AppBar(
@@ -52,56 +58,60 @@ class MealScreenDetail extends StatelessWidget {
               buildSectionTitle(context, 'Ingredients'),
               buildContainer(
                 ListView.builder(
-                  itemBuilder: (ctx, index) => Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Colors.yellow,
-                      ),
-                    ),
-                    margin: EdgeInsets.symmetric(vertical: 2),
-                    child: Card(
-                      color: Theme.of(context).accentColor,
-                      child: Padding(
-                        padding: const EdgeInsets.all(4.0),
-                        child: Text(
-                          selectedMeal.ingredients[index],
-                          style: TextStyle(
+                  itemBuilder: (ctx, index) =>
+                      Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(
                             color: Colors.yellow,
-                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        margin: EdgeInsets.symmetric(vertical: 2),
+                        child: Card(
+                          color: Theme
+                              .of(context)
+                              .accentColor,
+                          child: Padding(
+                            padding: const EdgeInsets.all(4.0),
+                            child: Text(
+                              selectedMeal.ingredients[index],
+                              style: TextStyle(
+                                color: Colors.yellow,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ),
                   itemCount: selectedMeal.ingredients.length,
                 ),
               ), //buildContainer
               buildSectionTitle(context, 'Steps'),
               buildContainer(
                 ListView.builder(
-                  itemBuilder: (ctx, index) => Column(
-                    children: [
-                      ListTile(
-                        leading: CircleAvatar(
-                          backgroundColor: Colors.white,
-                          child: Text(
-                            "#${index + 1}",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
+                  itemBuilder: (ctx, index) =>
+                      Column(
+                        children: [
+                          ListTile(
+                            leading: CircleAvatar(
+                              backgroundColor: Colors.white,
+                              child: Text(
+                                "#${index + 1}",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ),
+                            title: Text(
+                              selectedMeal.steps[index],
+                              style: TextStyle(color: Colors.white),
                             ),
                           ),
-                        ),
-                        title: Text(
-                          selectedMeal.steps[index],
-                          style: TextStyle(color: Colors.white),
-                        ),
+                          Divider(
+                            color: Colors.white,
+                          ),
+                        ],
                       ),
-                      Divider(
-                        color: Colors.white,
-                      ),
-                    ],
-                  ),
                   itemCount: selectedMeal.steps.length,
                 ),
               ), //buildContainer
@@ -109,6 +119,12 @@ class MealScreenDetail extends StatelessWidget {
           ),
         ),
       ),
+//      floatingActionButton: FloatingActionButton(
+//        child: Icon(Icons.delete_sweep),
+//        onPressed: () {
+//          Navigator.of(context).pop(mealId);
+//        },
+//      ),
     );
   }
 }
