@@ -3,22 +3,32 @@ import '../Models/meal.dart';
 import '../widgets/meal_item.dart';
 
 
-class CategoryMealsScreen extends StatelessWidget {
+class CategoryMealsScreen extends StatefulWidget {
   static const routeName = '/category-meals';
   final List<Meal> availableMeals;
   CategoryMealsScreen(this.availableMeals);
-//  final String title;
-//  final String id;
-//  CategoryMealsScreen(this.id,this.title);
+
   @override
-  Widget build(BuildContext context) {
+  _CategoryMealsScreenState createState() => _CategoryMealsScreenState();
+}
+
+class _CategoryMealsScreenState extends State<CategoryMealsScreen> {
+  String title ;
+  List<Meal> categoryMeals;
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
     final routeArgs =
-        ModalRoute.of(context).settings.arguments as Map<String, String>;
-    final String title = routeArgs['title'];
+    ModalRoute.of(context).settings.arguments as Map<String, String>;
+    title = routeArgs['title'];
     final String id = routeArgs['id'];
-    final categoryMeals = availableMeals.where((meal) {
+    categoryMeals = widget.availableMeals.where((meal) {
       return meal.categories.contains(id);
     }).toList();
+  }
+  @override
+  Widget build(BuildContext context) {
+
     return Scaffold(
         appBar: AppBar(
           title: Text(title),

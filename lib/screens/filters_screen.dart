@@ -5,8 +5,8 @@ import '../widgets/main_drawer.dart';
 
 class FiltersScreen extends StatefulWidget {
   static const routeName = '/filters-screen';
-  Map<String, bool> _filters;
-  Function setFilters;
+  final Map<String, bool> _filters;
+  final Function setFilters;
   FiltersScreen(this.setFilters, this._filters);
   @override
   _FiltersScreenState createState() => _FiltersScreenState();
@@ -54,7 +54,6 @@ class _FiltersScreenState extends State<FiltersScreen> {
                   'Veg': _isVeg,
                 };
                 widget.setFilters(selectedFilters);
-                Navigator.of(context).pushReplacementNamed('/');
               },
             ),
           ],
